@@ -4,6 +4,6 @@
 cmake_minimum_required (VERSION 3.8)
 
 # Add source to this project's executable.
-add_executable (toyRobotCpp "main.cpp" )
+add_executable (toyRobotCpp "main.cpp"  "ToyRobot.cpp" "ToyRobot.hpp")
 
 # TODO: Add tests and install targets if needed.
