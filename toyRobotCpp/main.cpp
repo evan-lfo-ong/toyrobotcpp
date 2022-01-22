@@ -22,7 +22,7 @@ int main()
 		cin >> c;
 	}
 	catch (ToyRobotException ex) {
-		cout << ex.getMessage();
+		cout << ex.getMessage() << endl;
 	}
 	return 0;
 }

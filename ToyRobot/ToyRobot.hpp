@@ -3,6 +3,7 @@
 
 #include <utility>
 #include <string>
+#include "RobotEnvironment.hpp"
 
 using namespace std;
 
@@ -22,13 +23,16 @@ namespace ToyRobotNS {
 		CardinalDirection left();
 		CardinalDirection right();
 		std::string report();
+		ToyRobot(IRobotEnvironment* = nullptr);
 
-	protected:
+	private:
 		Coordinate position = { 0, 0 };
 		CardinalDirection direction = North;
+		IRobotEnvironment* pEnv;
+		void assertEnvironment();
 	};
 
-	class ToyRobotException {
+	class ToyRobotException : public std::exception {
 	public:
 		ToyRobotException(string msg);
 		string getMessage();
@@ -37,4 +41,4 @@ namespace ToyRobotNS {
 	};
 }
 
-#endif
+#endif // TOY_ROBOT_HPP

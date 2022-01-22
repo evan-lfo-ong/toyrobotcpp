@@ -19,18 +19,62 @@ namespace ToyRobotNS {
 			}
 		}
 		if (result == -1) {
-			throw new ToyRobotException("Unknown direction " + dir);
+			throw ToyRobotException("Unknown direction " + dir);
 		} 
 		return (CardinalDirection)result;
 	}
 
+	ToyRobot::ToyRobot(IRobotEnvironment* environment) {
+		pEnv = environment;
+		position = { 0, 0 };
+		direction = North;
+	}
+
+	void ToyRobot::assertEnvironment() {
+		if (pEnv == nullptr) {
+			throw ToyRobotException("Robot is not in an environment");
+		}
+	}
+
 	Coordinate ToyRobot::place(int x, int y, string directionString) {
+		assertEnvironment();
+		if (!pEnv->spaceAvailable(x, y)) {
+			stringstream ss;
+			ss << "Cannot place in position (" << x << ", " << y << ")";
+			throw ToyRobotException(ss.str());
+		}
 		position = { x, y };
 		direction = getDirection(directionString);
 		return position;
 	}
 
 	Coordinate ToyRobot::move() {
+		assertEnvironment();
+		int x = position.first;
+		int y = position.second;
+		switch (direction) {
+		case North: {
+			y++;
+			break;
+		}
+		case South: 
+			y--;
+			break;
+		case East:
+			x++;
+			break;
+		case West:
+			x--;
+			break;
+		default:
+			throw ToyRobotException("Unknown direction");
+		}
+		if (!pEnv->spaceAvailable(x, y)) {
+			stringstream ss;
+			ss << "Cannot place in position (" << x << ", " << y << ")";
+			throw ToyRobotException(ss.str());
+		}
+		position = { x, y };
 		return position;
 	}
 
