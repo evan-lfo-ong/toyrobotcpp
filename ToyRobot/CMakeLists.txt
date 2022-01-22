@@ -2,4 +2,7 @@
 add_library(
 	ToyRobot
 	"ToyRobot.cpp"
- "RobotEnvironment.hpp")
+	"RobotEnvironment.hpp" 
+	"TableEnvironment.hpp" 
+	"TableEnvironment.cpp"
+)

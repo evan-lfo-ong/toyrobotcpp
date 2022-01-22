@@ -4,7 +4,7 @@
 namespace ToyRobotNS {
 	class IRobotEnvironment {
 	public:
-		virtual bool spaceAvailable(int x, int y) const = 0;
+		virtual bool spaceAvailable(int x, int y) = 0;
 	};
 }
 

@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include "ToyRobot.hpp"
+#include "TableEnvironment.hpp"
 
 using namespace std;
 using namespace ToyRobotNS;
@@ -11,8 +12,8 @@ using namespace ToyRobotNS;
 int main()
 {
 	try {
-		ToyRobot robot;
-		robot.place(1, 1, "SOUTH");
+		ToyRobot robot(new TableEnvironment());
+		robot.place(0, 0, "SOUTH");
 		robot.move();
 		robot.left();
 		robot.move();
