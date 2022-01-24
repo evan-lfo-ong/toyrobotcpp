@@ -5,6 +5,7 @@
 #include <string>
 #include "ToyRobot.hpp"
 #include "TableEnvironment.hpp"
+#include "CommandParser.hpp"
 
 using namespace std;
 using namespace ToyRobotNS;
@@ -12,7 +13,7 @@ using namespace ToyRobotNS;
 int main()
 {
 	try {
-		ToyRobot robot(new TableEnvironment());
+		/*ToyRobot robot(new TableEnvironment());
 		robot.place(0, 0, "SOUTH");
 		robot.move();
 		robot.left();
@@ -20,7 +21,10 @@ int main()
 		robot.right();
 		cout << robot.report();
 		char c;
-		cin >> c;
+		cin >> c;*/
+		auto parsed = CommandParser::ParseCommandLine("PLACE 100,1000,NORTH");
+		cout << parsed.first << endl;
+		cout << parsed.second.x << ", " << parsed.second.y << " :" << parsed.second.direction << endl;
 	}
 	catch (ToyRobotException ex) {
 		cout << ex.getMessage() << endl;
