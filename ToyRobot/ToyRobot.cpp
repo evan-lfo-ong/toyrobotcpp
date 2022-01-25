@@ -79,14 +79,15 @@ namespace ToyRobotNS {
 	}
 
 	CardinalDirection ToyRobot::left() {
-		direction = (direction == West) ? North : (CardinalDirection)(direction + 1);
+		direction = (direction == North) ? West : (CardinalDirection)(direction - 1);
 		return direction;
 	}
 
 	CardinalDirection ToyRobot::right() {
-		direction = (direction == North) ? West : (CardinalDirection)(direction - 1);
+		direction = (direction == West) ? North : (CardinalDirection)(direction + 1);
 		return direction;
 	}
+
 	string ToyRobot::report() {
 		stringstream ss;
 		ss << "Output: " << position.first << ", " << position.second 

@@ -12,22 +12,37 @@ using namespace ToyRobotNS;
 
 int main()
 {
-	try {
-		/*ToyRobot robot(new TableEnvironment());
-		robot.place(0, 0, "SOUTH");
-		robot.move();
-		robot.left();
-		robot.move();
-		robot.right();
-		cout << robot.report();
-		char c;
-		cin >> c;*/
-		auto parsed = CommandParser::ParseCommandLine("PLACE 100,1000,NORTH");
-		cout << parsed.first << endl;
-		cout << parsed.second.x << ", " << parsed.second.y << " :" << parsed.second.direction << endl;
-	}
-	catch (ToyRobotException ex) {
-		cout << ex.getMessage() << endl;
+	ToyRobot robot(new TableEnvironment());
+	string input;
+	while (input != "EXIT") {
+		try {
+			cout << "> ";
+			getline(cin, input, '\n');
+			auto parsed = CommandParser::ParseCommandLine(input);
+			auto args = parsed.second;
+			switch (parsed.first) {
+			case PlaceCommand:
+				robot.place(args.x, args.y, args.direction);
+				break;
+			case MoveCommand:
+				robot.move();
+				break;
+			case LeftCommand:
+				robot.left();
+				break;
+			case RightCommand:
+				robot.right();
+				break;
+			case ReportCommand:
+				cout << robot.report() << endl;
+				break;
+			default:
+				cout << "Unknown command" << endl;
+			}
+		}
+		catch (ToyRobotException ex) {
+			cout << ex.getMessage() << endl;
+		}
 	}
 	return 0;
 }
