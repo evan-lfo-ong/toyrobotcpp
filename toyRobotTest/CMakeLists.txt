@@ -11,12 +11,21 @@ enable_testing()
 
 add_executable(
 	toyRobotTest
-	toyRobotTestMain.cpp
+	"toyRobotTestMain.cpp"
+	"TableEnvironmentTest.cpp"
 )
 
 target_link_libraries(
 	toyRobotTest
+	ToyRobot
 	gtest_main
+)
+
+target_include_directories(
+	toyRobotTest PUBLIC
+	"${PROJECT_BINARY_DIR}"
+	"${PROJECT_SOURCE_DIR}/ToyRobot"
+	"${PROJECT_SOURCE_DIR}/toyRobotTest"
 )
 
 include(GoogleTest)
