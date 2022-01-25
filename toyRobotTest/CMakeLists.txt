@@ -13,6 +13,7 @@ add_executable(
 	toyRobotTest
 	"toyRobotTestMain.cpp"
 	"TableEnvironmentTest.cpp"
+	"ToyRobotTest.cpp"
 )
 
 target_link_libraries(
