@@ -10,4 +10,6 @@ add_subdirectory ("ToyRobot")
 
 # Include main toyRobotCpp executable
 add_subdirectory ("toyRobotCpp")
-# TODO: Include toyRobotTest 
+
+# Include toyRobot Test
+add_subdirectory("toyRobotTest")
