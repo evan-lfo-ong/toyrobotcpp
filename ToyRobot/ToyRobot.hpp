@@ -28,8 +28,10 @@ namespace ToyRobotNS {
 	private:
 		Coordinate position = { 0, 0 };
 		CardinalDirection direction = North;
+		bool isPlaced = false;
 		IRobotEnvironment* pEnv;
 		void assertEnvironment();
+		void assertPlacement();
 	};
 
 	class ToyRobotException : public std::exception {

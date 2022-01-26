@@ -36,6 +36,12 @@ namespace ToyRobotNS {
 		}
 	}
 
+	void ToyRobot::assertPlacement() {
+		if (!isPlaced) {
+			throw ToyRobotException("Robot is not yet placed");
+		}
+	}
+
 	Coordinate ToyRobot::place(int x, int y, string directionString) {
 		assertEnvironment();
 		if (!pEnv->spaceAvailable(x, y)) {
@@ -45,11 +51,13 @@ namespace ToyRobotNS {
 		}
 		position = { x, y };
 		direction = getDirection(directionString);
+		isPlaced = true;
 		return position;
 	}
 
 	Coordinate ToyRobot::move() {
 		assertEnvironment();
+		assertPlacement();
 		int x = position.first;
 		int y = position.second;
 		switch (direction) {
@@ -79,16 +87,19 @@ namespace ToyRobotNS {
 	}
 
 	CardinalDirection ToyRobot::left() {
+		assertPlacement();
 		direction = (direction == North) ? West : (CardinalDirection)(direction - 1);
 		return direction;
 	}
 
 	CardinalDirection ToyRobot::right() {
+		assertPlacement();
 		direction = (direction == West) ? North : (CardinalDirection)(direction + 1);
 		return direction;
 	}
 
 	string ToyRobot::report() {
+		assertPlacement();
 		stringstream ss;
 		ss << "Output: " << position.first << ", " << position.second 
 		   << ", " << getDirectionString(direction);

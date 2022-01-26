@@ -364,3 +364,4 @@ FodyWeavers.xsd
 
 # Additional Workspace ignores
 .vscode/*
+build

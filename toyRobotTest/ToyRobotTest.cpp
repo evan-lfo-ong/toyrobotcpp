@@ -17,6 +17,17 @@ TEST(ToyRobotAssertEnvironment, NoEnvironment) {
 	}
 }
 
+TEST(ToyRobotAssertPlacement, NoPlacement) {
+	ToyRobot target(new TableEnvironment());
+	try {
+		target.move();
+		FAIL();
+	}
+	catch (ToyRobotException ex) {
+		EXPECT_EQ(ex.getMessage(), "Robot is not yet placed");
+	}
+}
+
 TEST(ToyRobotGetDirectionHelpers, DirectionNorth) {
 	ToyRobot target(new TableEnvironment());
 	try {
